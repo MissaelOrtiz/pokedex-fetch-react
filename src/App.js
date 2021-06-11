@@ -40,8 +40,7 @@ export default class App extends Component {
         await sleep(1000)
 
         this.setState({ loading: false });
-        this.setState({ pokeData: data.body.results,
-          sortOrder: data.body.sort })
+        this.setState({ pokeData: data.body.results})
     }
 
     handleSort = async (e) => {
