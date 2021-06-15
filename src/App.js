@@ -1,67 +1,26 @@
 import './App.css';
-import React, { Component } from 'react'
+import React from 'react'
 import Header from './Header'
-import PokeList from './PokeList.js'
-import request from 'superagent'
-import Spinner from './Spinner';
-import Sort from './Sort'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './Home.js';
+import PokeIndex from './PokeIndex';
+import PokeDetail from './PokeDetail';
 
-const sleep = (x) => new Promise((res, rej) => setTimeout(() => { res() }, x))
-
-
-export default class App extends Component {
-    state= {
-      pokeData: [],
-      query: '',
-      sortOrder: 'asc',
-      loading: false,
-    }
-
-    componentDidMount = async () => {
-      await this.fetch();
-    }
-
-    handleClick = async () => {
-      await this.fetch()
-    }
-
-    handleChange = (e) => {
-      this.setState({ query: e.target.value });
-    }
-
-    fetch = async () => {
-        this.setState({loading: true});
-
-        const URL = this.state.query
-            ? `https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.query}&sort=pokemon&direction=${this.state.sortOrder}`
-            : `https://alchemy-pokedex.herokuapp.com/api/pokedex?sort=pokemon&direction=${this.state.sortOrder}`;
-
-        const data = await request.get(URL)
-        await sleep(1000)
-
-        this.setState({ loading: false });
-        this.setState({ pokeData: data.body.results,
-          sortOrder: data.body.sort })
-    }
-
-    handleSort = async (e) => {
-      this.setState({sortOrder: e.target.value})
-    }
-
-    render() {
-        return (
-            <div>
-              <Header />
-              <div className="center-div">
-                <input onChange={this.handleChange} />
-                <button onClick={this.handleClick}> Fetch! </button>
-                <Sort event={this.handleSort}/>
-                {this.state.loading
-                  ? <Spinner />
-                  : <PokeList pokeData={this.state.pokeData}/>
-                }
-              </div>
-            </div>
-        )
-    }
+class App extends React.Component {
+  render() {
+      return (
+          <div className="app">
+              <BrowserRouter>
+                  <Header />
+                  <Switch>
+                      <Route path="/" exact component={Home} />
+                      <Route path="/pokemon" exact component={PokeIndex} />
+                      <Route path="/pokemon/:id" component={PokeDetail} />
+                  </Switch>
+              </BrowserRouter>
+          </div>
+      );
+  }
 }
+
+export default App;

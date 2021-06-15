@@ -1,11 +1,30 @@
-import React, { Component } from 'react'
+import { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default class Header extends Component {
     render() {
         return (
-            <header className="App-header">
-                <h1> THE POKEDEX THING </h1>
-            </header>
-        )
+            <div className="App-header">
+                <div className="title">The Absolute Pokedex</div>
+                <div className="links">
+                    <NavLink
+                        to="/"
+                        exact
+                        className="nav-link"
+                        activeClassName="active"
+                    >
+                        Home
+                    </NavLink>
+                    <NavLink
+                        to="/pokemon"
+                        exact
+                        className="nav-link"
+                        activeClassName="active"
+                    >
+                        Index
+                    </NavLink>
+                </div>
+            </div>
+        );
     }
 }
