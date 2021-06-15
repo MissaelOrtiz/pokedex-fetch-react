@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 5px double black;
+  border: 10px solid rgba(0, 0, 0, 0);
   width: 250px;
   border-radius: 20px;
   margin: 20px;
@@ -41,4 +41,45 @@
   background-repeat: no-repeat;
   background-size: cover;
   justify-content: center;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: slategray;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: slategray;
+}
+
+.bot-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.top-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.details-image {
+  width: 400px;
+  height: auto;
+}
+
+.box {
+  border: double black 5px;
+  border-radius: 10%;
+  padding: 10px;
+  margin: 1px 10px;
+  background-color: bisque;
 }
